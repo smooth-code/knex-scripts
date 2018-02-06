@@ -1,0 +1,45 @@
+{
+  "name": "knex-scripts",
+  "version": "0.0.1",
+  "description": "Knex utilities to interact with Postgres database.",
+  "main": "lib/index.js",
+  "author": "Greg Bergé <berge.greg@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel -d lib src",
+    "lint": "eslint .",
+    "prebuild": "rm -rf lib",
+    "test": "yarn lint && yarn build && bin/knex-scripts create && bin/knex-scripts dump && bin/knex-scripts load && bin/knex-scripts drop",
+    "release": "yarn build && standard-version && conventional-github-releaser -p angular"
+  },
+  "bin": {
+    "knex-scripts": "bin/knex-scripts"
+  },
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "commander": "^2.14.0",
+    "interpret": "^1.1.0",
+    "liftoff": "^2.5.0",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "mz": "^2.7.0",
+    "tildify": "^1.2.0",
+    "v8flags": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "conventional-github-releaser": "^2.0.0",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "knex": "^0.14.2",
+    "pg": "^7.4.1",
+    "prettier": "^1.10.2",
+    "standard-version": "^4.3.0"
+  }
+}
