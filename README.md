@@ -1,5 +1,7 @@
 # Knex Scripts
 
+[![Build Status](https://travis-ci.org/smooth-code/knex-scripts.svg?branch=master)](https://travis-ci.org/smooth-code/knex-scripts)
+
 Knex utilities to interact with Postgres database.
 
 ```
