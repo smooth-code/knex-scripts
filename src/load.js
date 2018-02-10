@@ -9,7 +9,7 @@ async function load({ env, docker, structurePath, knexConfig }) {
     ? `docker exec -i \`docker-compose ps -q postgres\` psql --username ${
         knexConfig.connection.user
       } ${knexConfig.connection.database} < ${structurePath}`
-    : `psql --username ${knexConfig.connection.user} ${
+    : `psql -h localhost --username ${knexConfig.connection.user} ${
         knexConfig.connection.database
       } < ${structurePath}`
 
