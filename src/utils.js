@@ -42,6 +42,10 @@ export function getCommand({ docker, knexConfig: { connection } }, command) {
     args.push(`--username "${connection.user}"`)
   }
 
+  if (connection.password) {
+    args.push('--no-password')
+  }
+
   args.push(connection.database)
 
   return args.join(' ')
