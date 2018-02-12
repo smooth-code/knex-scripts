@@ -18,11 +18,11 @@ export function wrapDockerCommand(options, command) {
   return command
 }
 
-export function getCommandEnv(options) {
-  if (options.knexConfig.password) {
+export function getCommandEnv({ knexConfig: { connection } }) {
+  if (connection.password) {
     return {
       ...process.env,
-      PGPASSWORD: options.knexConfig.password,
+      PGPASSWORD: connection.password,
     }
   }
 
