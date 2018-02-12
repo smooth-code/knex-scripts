@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/smooth-code/knex-scripts/compare/v0.1.1...v0.1.2) (2018-02-12)
+
+
+### Bug Fixes
+
+* fix password issue with env ([55854e6](https://github.com/smooth-code/knex-scripts/commit/55854e6))
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/smooth-code/knex-scripts/compare/v0.1.0...v0.1.1) (2018-02-12)
 
