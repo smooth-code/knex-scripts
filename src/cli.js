@@ -82,9 +82,13 @@ function initConfig(env) {
     structurePath: knexScriptsConfig.structurePath || 'db/structure.sql',
     migrationsPath: join(process.cwd(), 'migrations'),
     docker:
-      commander.docker !== undefined
+      (commander.docker !== undefined
         ? commander.docker
-        : knexScriptsConfig.docker,
+        : knexScriptsConfig.docker) || false,
+    dockerService:
+      (commander.dockerService !== undefined
+        ? commander.dockerService
+        : knexScriptsConfig.docker) || 'postgres',
   }
 }
 
@@ -95,6 +99,7 @@ function invoke(env) {
         chalk`{blue Knex version: {green ${env.modulePackage.version}}}\n`,
     )
     .option('--docker', 'Use docker.')
+    .option('--docker-service', 'Docker service name.')
     .option('--knexfile [path]', 'Specify the knexfile path.')
     .option('--cwd [path]', 'Specify the working directory.')
     .option(

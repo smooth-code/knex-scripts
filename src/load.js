@@ -1,19 +1,20 @@
 /* eslint-disable max-len */
 import { exec } from 'mz/child_process'
-import { preventEnv } from './utils'
+import {
+  preventEnv,
+  wrapDockerCommand,
+  getCommand,
+  getCommandEnv,
+} from './utils'
 
-async function load({ env, docker, structurePath, knexConfig }) {
-  preventEnv('production', env)
+async function load(options) {
+  const { structurePath } = options
+  preventEnv('production', options.env)
 
-  const command = docker
-    ? `docker exec -i \`docker-compose ps -q postgres\` psql --username ${
-        knexConfig.connection.user
-      } ${knexConfig.connection.database} < ${structurePath}`
-    : `psql -h localhost --username ${knexConfig.connection.user} ${
-        knexConfig.connection.database
-      } < ${structurePath}`
+  const env = getCommandEnv(options)
+  const command = `${getCommand(options, 'psql')} < ${structurePath}`
 
-  return exec(command)
+  return exec(wrapDockerCommand(options, command), { env })
 }
 
 export default load
