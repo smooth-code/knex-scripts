@@ -1,19 +1,18 @@
 /* eslint-disable max-len */
 import { exec } from 'mz/child_process'
-import { preventEnv } from './utils'
+import {
+  preventEnv,
+  wrapDockerCommand,
+  getCommand,
+  getCommandEnv,
+} from './utils'
 
-async function create({ docker, env, knexConfig }) {
-  preventEnv('production', env)
+async function create(options) {
+  preventEnv('production', options.env)
 
-  const command = docker
-    ? `docker-compose run postgres createdb --host postgres --username ${
-        knexConfig.connection.user
-      } ${knexConfig.connection.database}`
-    : `createdb --username ${knexConfig.connection.user} ${
-        knexConfig.connection.database
-      }`
-
-  return exec(command)
+  const env = getCommandEnv(options)
+  const command = getCommand(options, 'createdb')
+  return exec(wrapDockerCommand(options, command), { env })
 }
 
 export default create

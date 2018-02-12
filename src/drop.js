@@ -1,18 +1,18 @@
+/* eslint-disable max-len */
 import { exec } from 'mz/child_process'
-import { preventEnv } from './utils'
+import {
+  preventEnv,
+  wrapDockerCommand,
+  getCommand,
+  getCommandEnv,
+} from './utils'
 
-async function drop({ docker, env, knexConfig }) {
-  preventEnv('production', env)
+async function create(options) {
+  preventEnv('production', options.env)
 
-  const command = docker
-    ? `docker-compose run postgres dropdb --host postgres --username ${
-        knexConfig.connection.user
-      } ${knexConfig.connection.database} --if-exists`
-    : `dropdb --username ${knexConfig.connection.user} ${
-        knexConfig.connection.database
-      } --if-exists`
-
-  return exec(command)
+  const env = getCommandEnv(options)
+  const command = getCommand(options, 'dropdb --if-exists')
+  return exec(wrapDockerCommand(options, command), { env })
 }
 
-export default drop
+export default create
