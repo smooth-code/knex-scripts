@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/smooth-code/knex-scripts/compare/v0.1.2...v0.1.3) (2018-02-13)
+
+
+### Bug Fixes
+
+* fix dockerService option ([afa8380](https://github.com/smooth-code/knex-scripts/commit/afa8380))
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/smooth-code/knex-scripts/compare/v0.1.1...v0.1.2) (2018-02-12)
 

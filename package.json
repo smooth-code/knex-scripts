@@ -1,6 +1,6 @@
 {
   "name": "knex-scripts",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Knex utilities to interact with Postgres database.",
   "main": "lib/index.js",
   "author": "Greg Bergé <berge.greg@gmail.com>",
