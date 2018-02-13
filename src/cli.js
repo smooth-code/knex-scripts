@@ -99,7 +99,10 @@ function invoke(env) {
         chalk`{blue Knex version: {green ${env.modulePackage.version}}}\n`,
     )
     .option('--docker', 'Use docker.')
-    .option('--docker-service', 'Docker service name.')
+    .option(
+      '--docker-service [service]',
+      'Docker service name, default: "postgres".',
+    )
     .option('--knexfile [path]', 'Specify the knexfile path.')
     .option('--cwd [path]', 'Specify the working directory.')
     .option(
