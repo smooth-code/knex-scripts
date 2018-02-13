@@ -88,7 +88,7 @@ function initConfig(env) {
     dockerService:
       (commander.dockerService !== undefined
         ? commander.dockerService
-        : knexScriptsConfig.docker) || 'postgres',
+        : knexScriptsConfig.dockerService) || 'postgres',
   }
 }
 
