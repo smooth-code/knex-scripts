@@ -1,6 +1,6 @@
 {
   "name": "knex-scripts",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Knex utilities to interact with Postgres database.",
   "main": "lib/index.js",
   "author": "Greg Bergé <berge.greg@gmail.com>",
@@ -9,10 +9,8 @@
     "build": "babel -d lib src",
     "lint": "eslint .",
     "prebuild": "rm -rf lib",
-    "test":
-      "yarn lint && yarn build && jest --ci && bin/knex-scripts create && bin/knex-scripts dump && bin/knex-scripts load && bin/knex-scripts drop && bin/knex-scripts check-structure",
-    "release":
-      "yarn build && standard-version && conventional-github-releaser -p angular"
+    "test": "yarn lint && yarn build && jest --ci && bin/knex-scripts create && bin/knex-scripts dump && bin/knex-scripts load && bin/knex-scripts drop && bin/knex-scripts check-structure",
+    "release": "yarn build && standard-version && conventional-github-releaser -p angular"
   },
   "bin": {
     "knex-scripts": "bin/knex-scripts"

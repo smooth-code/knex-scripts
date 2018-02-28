@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/smooth-code/knex-scripts/compare/v0.1.4...v0.2.0) (2018-02-28)
+
+
+### Features
+
+* add check-structure command ([cc2c27b](https://github.com/smooth-code/knex-scripts/commit/cc2c27b))
+
+
+
 <a name="0.1.4"></a>
 ## [0.1.4](https://github.com/smooth-code/knex-scripts/compare/v0.1.3...v0.1.4) (2018-02-13)
 
