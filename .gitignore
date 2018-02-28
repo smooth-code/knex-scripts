@@ -1,3 +1,4 @@
 node_modules/
 lib/
 db/
+!test/__fixtures__/structure.sql

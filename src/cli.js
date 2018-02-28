@@ -13,6 +13,7 @@ import drop from './drop'
 import dump from './dump'
 import load from './load'
 import truncate from './truncate'
+import checkStructure from './checkStructure'
 
 const argv = minimist(process.argv.slice(2))
 
@@ -65,7 +66,7 @@ function initConfig(env) {
 
   if (environment) {
     console.log('Using environment:', chalk.magenta(environment))
-    config = config[environment] || config
+    config = { ...config, ...config[environment] }
   }
 
   if (!config) {
@@ -80,7 +81,10 @@ function initConfig(env) {
     knexConfig: config,
     env: environment,
     structurePath: knexScriptsConfig.structurePath || 'db/structure.sql',
-    migrationsPath: join(process.cwd(), 'migrations'),
+    migrationsPath:
+      config.migrations && config.migrations.directory
+        ? config.migrations.directory
+        : join(process.cwd(), 'migrations'),
     docker:
       (commander.docker !== undefined
         ? commander.docker
@@ -116,7 +120,7 @@ function invoke(env) {
     .action(() => {
       const config = initConfig(env)
       return create(config)
-        .then(() => console.log(chalk.green(`Database created.`)))
+        .then(() => console.log(chalk.green('Database created.')))
         .catch(exit)
     })
 
@@ -126,7 +130,7 @@ function invoke(env) {
     .action(() => {
       const config = initConfig(env)
       return drop(config)
-        .then(() => console.log(chalk.green(`Database dropped.`)))
+        .then(() => console.log(chalk.green('Database dropped.')))
         .catch(exit)
     })
 
@@ -136,7 +140,7 @@ function invoke(env) {
     .action(() => {
       const config = initConfig(env)
       return dump(config)
-        .then(() => console.log(chalk.green(`Dump created.`)))
+        .then(() => console.log(chalk.green('Dump created.')))
         .catch(exit)
     })
 
@@ -146,7 +150,24 @@ function invoke(env) {
     .action(() => {
       const config = initConfig(env)
       return load(config)
-        .then(() => console.log(chalk.green(`Database loaded.`)))
+        .then(() => console.log(chalk.green('Database loaded.')))
+        .catch(exit)
+    })
+
+  commander
+    .command('check-structure')
+    .description('Check structure.')
+    .action(() => {
+      const config = initConfig(env)
+      return checkStructure(config)
+        .then(upToDate => {
+          if (upToDate) {
+            console.log(chalk.green('Structure is up to date.'))
+          } else {
+            console.log(chalk.red('Structure is not up to date.'))
+            process.exit(1)
+          }
+        })
         .catch(exit)
     })
 

@@ -1,3 +1,31 @@
+import { readFile, readdir, exists } from 'mz/fs'
+
+export async function getInsertsFromMigrations(migrationsPath) {
+  if (!await exists(migrationsPath)) return []
+  const migrations = await readdir(migrationsPath)
+  return migrations.map(
+    migration =>
+      `INSERT INTO knex_migrations(name, batch, migration_time) VALUES ('${migration}', 1, NOW());`,
+  )
+}
+
+export async function getInsertsFromStructure(structurePath) {
+  if (!await exists(structurePath)) return []
+  const structure = await readFile(structurePath, 'utf-8')
+  const regExp = /INSERT INTO knex_migrations\(name, batch, migration_time\) VALUES \('.*', 1, NOW\(\)\);/g
+
+  const inserts = []
+
+  let match
+  /* eslint-disable no-cond-assign */
+  while ((match = regExp.exec(structure))) {
+    inserts.push(match[0])
+  }
+  /* eslint-enable no-cond-assign */
+
+  return inserts
+}
+
 export function preventEnv(preventedEnv, env) {
   if (env === preventedEnv) {
     throw new Error(`Not in ${preventedEnv} please!`)

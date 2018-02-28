@@ -11,26 +11,28 @@ npm install knex-scripts
 ## Command Line Usage
 
 ```
-  Usage: knex-scripts [options] [command]
+  Usage: cli [options] [command]
 
 
   Options:
 
-    -V, --version      output the version number
-    --docker           Use docker.
-    --knexfile [path]  Specify the knexfile path.
-    --cwd [path]       Specify the working directory.
-    --env [name]       environment, default: process.env.NODE_ENV || development
-    -h, --help         output usage information
+  -V, --version               output the version number
+  --docker                    Use docker.
+  --docker-service [service]  Docker service name, default: "postgres".
+  --knexfile [path]           Specify the knexfile path.
+  --cwd [path]                Specify the working directory.
+  --env [name]                environment, default: process.env.NODE_ENV || development
+  -h, --help                  output usage information
 
 
   Commands:
 
-    create    Create database.
-    drop      Drop database.
-    dump      Dump database.
-    load      Load database.
-    truncate  Truncate all tables.
+  create           Create database.
+  drop             Drop database.
+  dump             Dump database.
+  load             Load database.
+  check-structure  Check structure.
+  truncate         Truncate all tables.
 ```
 
 ## Node API Usage
