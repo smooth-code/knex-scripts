@@ -1,13 +1,6 @@
-import {
-  requireEnv,
-  getInsertsFromMigrations,
-  getInsertsFromStructure,
-} from './utils'
+import { getInsertsFromMigrations, getInsertsFromStructure } from './utils'
 
-async function checkStructure(options) {
-  const { structurePath, migrationsPath } = options
-  requireEnv('development', options.env)
-
+async function checkStructure({ structurePath, migrationsPath }) {
   const migrationsInFolder = await getInsertsFromMigrations(migrationsPath)
   const migrationsInStructure = await getInsertsFromStructure(structurePath)
 
