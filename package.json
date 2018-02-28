@@ -9,8 +9,10 @@
     "build": "babel -d lib src",
     "lint": "eslint .",
     "prebuild": "rm -rf lib",
-    "test": "yarn lint && yarn build && bin/knex-scripts create && bin/knex-scripts dump && bin/knex-scripts load && bin/knex-scripts drop",
-    "release": "yarn build && standard-version && conventional-github-releaser -p angular"
+    "test":
+      "yarn lint && yarn build && jest --ci && bin/knex-scripts create && bin/knex-scripts dump && bin/knex-scripts load && bin/knex-scripts drop && bin/knex-scripts check-structure",
+    "release":
+      "yarn build && standard-version && conventional-github-releaser -p angular"
   },
   "bin": {
     "knex-scripts": "bin/knex-scripts"
@@ -29,6 +31,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.1",
+    "babel-jest": "^22.4.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
@@ -37,6 +40,7 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.8.0",
+    "jest": "^22.4.2",
     "knex": "^0.14.2",
     "pg": "^7.4.1",
     "prettier": "^1.10.2",
