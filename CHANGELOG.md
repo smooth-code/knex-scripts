@@ -1,6 +1,23 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [0.3.0](https://github.com/smooth-code/knex-scripts/compare/v0.2.1...v0.3.0) (2019-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* require node v10+
+
+### Bug Fixes
+
+* **check-structure:** do not require dev environment ([dfb1754](https://github.com/smooth-code/knex-scripts/commit/dfb1754))
+
+
+### Features
+
+* requires node v10+ ([15da8f6](https://github.com/smooth-code/knex-scripts/commit/15da8f6))
+* upgrade dependencies ([a484efa](https://github.com/smooth-code/knex-scripts/commit/a484efa))
 
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/smooth-code/knex-scripts/compare/v0.2.0...v0.2.1) (2018-02-28)
