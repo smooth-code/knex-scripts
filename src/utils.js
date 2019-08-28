@@ -1,7 +1,7 @@
 import { readFile, readdir, exists } from 'mz/fs'
 
 export async function getInsertsFromMigrations(migrationsPath) {
-  if (!await exists(migrationsPath)) return []
+  if (!(await exists(migrationsPath))) return []
   const migrations = await readdir(migrationsPath)
   return migrations.map(
     migration =>
@@ -10,7 +10,7 @@ export async function getInsertsFromMigrations(migrationsPath) {
 }
 
 export async function getInsertsFromStructure(structurePath) {
-  if (!await exists(structurePath)) return []
+  if (!(await exists(structurePath))) return []
   const structure = await readFile(structurePath, 'utf-8')
   const regExp = /INSERT INTO knex_migrations\(name, batch, migration_time\) VALUES \('.*', 1, NOW\(\)\);/g
 
