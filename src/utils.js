@@ -5,14 +5,14 @@ export async function getInsertsFromMigrations(migrationsPath) {
   const migrations = await readdir(migrationsPath)
   return migrations.map(
     migration =>
-      `INSERT INTO knex_migrations(name, batch, migration_time) VALUES ('${migration}', 1, NOW());`,
+      `INSERT INTO public.knex_migrations(name, batch, migration_time) VALUES ('${migration}', 1, NOW());`,
   )
 }
 
 export async function getInsertsFromStructure(structurePath) {
   if (!(await exists(structurePath))) return []
   const structure = await readFile(structurePath, 'utf-8')
-  const regExp = /INSERT INTO knex_migrations\(name, batch, migration_time\) VALUES \('.*', 1, NOW\(\)\);/g
+  const regExp = /INSERT INTO public\.knex_migrations\(name, batch, migration_time\) VALUES \('.*', 1, NOW\(\)\);/g
 
   const inserts = []
 

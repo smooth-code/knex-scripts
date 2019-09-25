@@ -26,6 +26,6 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 -- Knex migrations
 
-INSERT INTO knex_migrations(name, batch, migration_time) VALUES ('20180207153033_migration_1.js', 1, NOW());
-INSERT INTO knex_migrations(name, batch, migration_time) VALUES ('20180207153040_migration_2.js', 1, NOW());
-INSERT INTO knex_migrations(name, batch, migration_time) VALUES ('20180207153050_migration_3.js', 1, NOW());
+INSERT INTO public.knex_migrations(name, batch, migration_time) VALUES ('20180207153033_migration_1.js', 1, NOW());
+INSERT INTO public.knex_migrations(name, batch, migration_time) VALUES ('20180207153040_migration_2.js', 1, NOW());
+INSERT INTO public.knex_migrations(name, batch, migration_time) VALUES ('20180207153050_migration_3.js', 1, NOW());
