@@ -9,7 +9,7 @@ describe('#getInsertsFromMigrations', () => {
     expect(inserts).toEqual([])
   })
 
-  it('should read migrations from folder', async () => {
+  it('should read migrations from folder (ignore other than js files)', async () => {
     const inserts = await getInsertsFromMigrations(
       path.join(__dirname, '__fixtures__/migrations'),
     )

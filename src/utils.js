@@ -1,8 +1,9 @@
-import { readFile, readdir, exists } from 'mz/fs'
+import { readFile, exists } from 'mz/fs'
+import glob from 'tiny-glob'
 
 export async function getInsertsFromMigrations(migrationsPath) {
   if (!(await exists(migrationsPath))) return []
-  const migrations = await readdir(migrationsPath)
+  const migrations = await glob('*.js', { cwd: migrationsPath })
   return migrations.map(
     migration =>
       `INSERT INTO public.knex_migrations(name, batch, migration_time) VALUES ('${migration}', 1, NOW());`,
