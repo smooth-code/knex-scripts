@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.3](https://github.com/smooth-code/knex-scripts/compare/v0.3.2...v0.3.3) (2020-03-29)
+
+
+### Features
+
+* exit on error in load ([8940352](https://github.com/smooth-code/knex-scripts/commit/89403527c4422442fcaede7d75540aa8e13d0cc9))
+
 ### [0.3.2](https://github.com/smooth-code/knex-scripts/compare/v0.3.1...v0.3.2) (2020-03-03)
 
 
