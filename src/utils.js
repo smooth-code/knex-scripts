@@ -5,7 +5,7 @@ export async function getInsertsFromMigrations(migrationsPath) {
   if (!(await exists(migrationsPath))) return []
   const migrations = await glob('*.js', { cwd: migrationsPath })
   return migrations.map(
-    migration =>
+    (migration) =>
       `INSERT INTO public.knex_migrations(name, batch, migration_time) VALUES ('${migration}', 1, NOW());`,
   )
 }
