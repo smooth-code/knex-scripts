@@ -12,7 +12,10 @@ async function load(options) {
   preventEnv('production', options.env)
 
   const env = getCommandEnv(options)
-  const command = `${getCommand(options, 'psql')} < ${structurePath}`
+  const command = `${getCommand(
+    options,
+    'psql',
+  )} -v ON_ERROR_STOP=1 -f ${structurePath}`
 
   return exec(wrapDockerCommand(options, command), { env })
 }
