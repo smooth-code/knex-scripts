@@ -44,6 +44,6 @@
     "knex": "^0.20.13",
     "pg": "^7.18.2",
     "prettier": "^2.0.2",
-    "standard-version": "^7.1.0"
+    "standard-version": "^8.0.1"
   }
 }
