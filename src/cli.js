@@ -55,7 +55,8 @@ async function initConfig(env) {
   }
 
   const defaultEnv = 'development'
-  let config = await import(env.configPath)
+  const rawConfig = await import(env.configPath)
+  let config = rawConfig.default || rawConfig
   let environment = commander.env || process.env.NODE_ENV
 
   if (!environment && typeof config[defaultEnv] === 'object') {
@@ -160,7 +161,7 @@ function invoke(env) {
     .action(async () => {
       const config = await initConfig(env)
       return checkStructure(config)
-        .then(upToDate => {
+        .then((upToDate) => {
           if (upToDate) {
             console.log(chalk.green('Structure is up to date.'))
           } else {
