@@ -42,7 +42,7 @@ function checkLocalModule(env) {
   }
 }
 
-function initConfig(env) {
+async function initConfig(env) {
   checkLocalModule(env)
 
   if (!env.configPath) {
@@ -55,7 +55,7 @@ function initConfig(env) {
   }
 
   const defaultEnv = 'development'
-  let config = require(env.configPath)
+  let config = await import(env.configPath)
   let environment = commander.env || process.env.NODE_ENV
 
   if (!environment && typeof config[defaultEnv] === 'object') {
@@ -117,8 +117,8 @@ function invoke(env) {
   commander
     .command('create')
     .description('Create database.')
-    .action(() => {
-      const config = initConfig(env)
+    .action(async () => {
+      const config = await initConfig(env)
       return create(config)
         .then(() => console.log(chalk.green('Database created.')))
         .catch(exit)
@@ -127,8 +127,8 @@ function invoke(env) {
   commander
     .command('drop')
     .description('Drop database.')
-    .action(() => {
-      const config = initConfig(env)
+    .action(async () => {
+      const config = await initConfig(env)
       return drop(config)
         .then(() => console.log(chalk.green('Database dropped.')))
         .catch(exit)
@@ -137,8 +137,8 @@ function invoke(env) {
   commander
     .command('dump')
     .description('Dump database.')
-    .action(() => {
-      const config = initConfig(env)
+    .action(async () => {
+      const config = await initConfig(env)
       return dump(config)
         .then(() => console.log(chalk.green('Dump created.')))
         .catch(exit)
@@ -147,8 +147,8 @@ function invoke(env) {
   commander
     .command('load')
     .description('Load database.')
-    .action(() => {
-      const config = initConfig(env)
+    .action(async () => {
+      const config = await initConfig(env)
       return load(config)
         .then(() => console.log(chalk.green('Database loaded.')))
         .catch(exit)
@@ -157,8 +157,8 @@ function invoke(env) {
   commander
     .command('check-structure')
     .description('Check structure.')
-    .action(() => {
-      const config = initConfig(env)
+    .action(async () => {
+      const config = await initConfig(env)
       return checkStructure(config)
         .then(upToDate => {
           if (upToDate) {
@@ -174,8 +174,8 @@ function invoke(env) {
   commander
     .command('truncate')
     .description('Truncate all tables.')
-    .action(() => {
-      const config = initConfig(env)
+    .action(async () => {
+      const config = await initConfig(env)
       return truncate(config)
         .then(() => console.log(chalk.green(`Database truncated.`)))
         .catch(exit)
