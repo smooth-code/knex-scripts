@@ -5,8 +5,9 @@
       {
         "loose": true,
         "targets": {
-          "node": "10"
-        }
+          "node": "14"
+        },
+        "exclude": ["proposal-dynamic-import"]
       }
     ]
   ],
