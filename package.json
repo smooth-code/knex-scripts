@@ -10,8 +10,8 @@
     "lint": "eslint .",
     "prebuild": "rm -rf lib",
     "format": "prettier --write \"**/*.{js,md,mdx}\"",
-    "test": "yarn lint && yarn build && jest --ci && bin/knex-scripts create && bin/knex-scripts dump && bin/knex-scripts load && bin/knex-scripts drop && bin/knex-scripts check-structure",
-    "release": "yarn build && standard-version && conventional-github-releaser -p angular"
+    "test": "npm run lint && npm run build && jest --ci && bin/knex-scripts create && bin/knex-scripts dump && bin/knex-scripts load && bin/knex-scripts drop && bin/knex-scripts check-structure",
+    "release": "npm run build && standard-version && conventional-github-releaser -p angular"
   },
   "bin": {
     "knex-scripts": "bin/knex-scripts"
